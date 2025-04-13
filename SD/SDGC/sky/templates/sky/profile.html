@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky - Profile</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Allows the user to change their details -->
+        <div class="form-box" id="profile-form">
+            <form method="POST" action="{% url 'profile' %}">
+                {% csrf_token %}
+                <h2>Change Profile Information</h2>
+                <!-- Gives the option for the user to change only fields
+                 they want to change -->
+                <p>If you do not wish to change a section, leave it blank</p>
+                
+                <!-- Fullname field, where they can change it -->
+                Current Fullname: {{user.fullname}}<input type="text" name="fullname" placeholder="John Doe">
+                <!-- They can also change their username -->
+                Current Username: {{user.username}}<input type="text" name="username" placeholder="johndoe">
+                <!-- Can change email too -->
+                Current Email: {{user.email}}
+                <input type="text" name="email" placeholder="johndoe@gmail.com">
+                <!-- Can change password too -->
+                Password<input type="password" name="password" placeholder="Password123">
+                <!-- Displays what role the user has -->
+                Role<input type="text" value="{{user.role}}" readonly />
+                <!-- Displays what team is user part off -->
+                Team<input type="text" value="" readonly />
+                <!-- Displays what department the user is part of -->
+                Department<input type="text" value="" readonly />
+                <!-- Displays any error messages -->
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <button type="submit">Save Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loads the JavaScript elements-->    
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

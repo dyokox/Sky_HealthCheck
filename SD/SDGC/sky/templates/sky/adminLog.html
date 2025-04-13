@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky - Login</title>
+    <!-- Django Static Files Loder, so the CSS is able to work for adminLog.html -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head> 
+<body>
+    <div class="container">
+        <div class="form-box" id="adminLogin-form">
+            <form method="POST" action="{% url 'admin_login' %}">
+                <!-- Security token to prevent CSRF attacks -->
+                {% csrf_token %}
+                <h2>Admin Login</h2>
+                <!-- Username input field, with an example how an username can look like -->
+                Username<input type="text" name="username" placeholder="johndoe" required>
+                <!-- Password input field, with an example how a password can look like -->
+                Password<input type="password" name="password" placeholder="Password123" required>
+                <button type="submit">Login</button>
+                <!-- Allows the user to register if they do not have an account by redirecting
+                 to the register.html -->
+                <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+                <!-- Separate login page, for users who do not have access
+                to the admin page e.g. engineers -->
+                <p>Not an Admin? <a href="{% url 'sky_login' %}">Login</a></p>
+                <!-- Displaying error messages e.g. invalid passoword/username-->
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading the JavaScript file from static folder  -->
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
