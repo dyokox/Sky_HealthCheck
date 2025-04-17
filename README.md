@@ -2,7 +2,7 @@
 # Sky - HealthCheck
 A group project consisting of 5 members:
 - Corina Muntean (@dyokox)
-- Galhardo Milena (@)
+- Galhardo Milena (@milenaag)
 - Hayrapetyan Shushanik (@girlfromsunflower)
 - Rodrigues Abigail (@abigailrodr)
 - Walters Callum (@)
@@ -20,7 +20,7 @@ A group project consisting of 5 members:
 - Logout `127.0.0.1:8000/logout`
 - User Profile `127.0.0.1:8000/profile`
 
-### Galhardo Milena (@)
-### Hayrapetyan Shushanik (@)
-### Rodrigues Abigail (@)
+### Galhardo Milena (@milenaag)
+### Hayrapetyan Shushanik (@girlfromsunflower)
+### Rodrigues Abigail (@bigailrodr)
 ### Walters Callum (@)
