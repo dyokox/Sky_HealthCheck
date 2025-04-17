@@ -4,7 +4,7 @@ A group project consisting of 5 members:
 - Corina Muntean (@dyokox)
 - Galhardo Milena (@)
 - Hayrapetyan Shushanik (@girlfromsunflower)
-- Rodrigues Abigail (@)
+- Rodrigues Abigail (@abigailrodr)
 - Walters Callum (@)
 
 ## Versions
