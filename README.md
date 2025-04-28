@@ -5,7 +5,7 @@ A group project consisting of 5 members:
 - Galhardo Milena (@milenaag)
 - Hayrapetyan Shushanik (@girlfromsunflower)
 - Rodrigues Abigail (@abigailrodr)
-- Walters Callum (@)
+- Walters Callum (@kadeen389)
 
 ## Versions
 
@@ -23,4 +23,4 @@ A group project consisting of 5 members:
 ### Galhardo Milena (@milenaag)
 ### Hayrapetyan Shushanik (@girlfromsunflower)
 ### Rodrigues Abigail (@bigailrodr)
-### Walters Callum (@)
+### Walters Callum (@kadeen389)
