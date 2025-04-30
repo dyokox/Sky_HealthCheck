@@ -1,3 +1,5 @@
+# Authored by Corina Muntean, Callum Walters
+
 from django.urls import path
 # Imports the views.py
 from . import views

@@ -1,3 +1,6 @@
+# Authored by Corina Muntean, Callum Walters
+
+
 from django.shortcuts import render, redirect
 # Hashes passwords, making it secure
 from django.contrib.auth.hashers import make_password
