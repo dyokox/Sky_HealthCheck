@@ -24,7 +24,7 @@ A group project consisting of 5 members:
 ### Hayrapetyan Shushanik (@girlfromsunflower)
 ### Rodrigues Abigail (@bigailrodr)
 - models.py file
-- admin healthcard CRUD operations http://127.0.0.1:8000/admin.py
+- admin healthcard CRUD operations http://127.0.0.1:8000/admin.py/
 ### Walters Callum (@kadeen389)
 - Engineer Vote Summary Page `http://127.0.0.1:8000/engineer_summary/`
 - Team Leader Vote Summary Page `http://127.0.0.1:8000/teamleader_summary/`
