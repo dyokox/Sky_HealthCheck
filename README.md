@@ -22,7 +22,7 @@ A group project consisting of 5 members:
 
 ### Galhardo Milena (@milenaag)
 ### Hayrapetyan Shushanik (@girlfromsunflower)
-### Rodrigues Abigail (@bigailrodr)
+### Rodrigues Abigail (@abigailrodr)
 - models.py file
 - admin healthcard CRUD operations http://127.0.0.1:8000/admin.py/
 ### Walters Callum (@kadeen389)
