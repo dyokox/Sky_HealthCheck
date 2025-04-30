@@ -14,6 +14,45 @@
     {% if user.is_authenticated %}
         <!-- If user is logged, it will display a Logout button -->   
         <button type="submit"><a href="{% url 'logout_user' %}">Logout</a></button>
+<!---------------------------------------------------------------------------------------->
+        <!--By Callum Walters w1828868-->
+            <!-- View Summary button based on user role -->
+            <div style="position: absolute; top: 20px; right: 20px;">
+                {% if user.role|lower == "team leader" %}
+                    <div class="summary-button">
+                        <a href="{% url 'teamleader_summary' %}" class="btn">View Summary</a>
+                    </div>
+                {% elif user.role|lower == "engineer" %}
+                    <div class="summary-button">
+                        <a href="{% url 'engineer_summary' %}" class="btn">View Summary</a>
+                    </div>
+
+                {% elif user.role|lower == "department leader" %}
+                    <div class="summary-button">
+                        <a href="{% url 'departmentleader_summary' %}" class="btn">View Summary</a>
+                    </div>
+
+                {% elif user.role|lower == "senior manager" %}
+                    <div class="summary-button">
+                        <a href="{% url 'seniormanager_summary' %}" class="btn">View Summary</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Message display (e.g. permission errors) -->
+            {% if messages %}
+            <div style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 60%; text-align: center;">
+                <ul style="list-style: none; padding: 15px 20px; margin: 0 auto; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 6px; font-size: 1rem;">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            {{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+<!---------------------------------------------------------------------------------------->
     {% else %}
         <!-- If not, it will tell the user to login -->
         <button type="submit"><a href="{% url 'sky_login' %}">Login</a></button>

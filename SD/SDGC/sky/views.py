@@ -158,3 +158,61 @@ def admin_login(request):
             messages.error(request, "Invalid username and/or password.")
 
     return render(request, 'sky/adminLog.html')
+# ----------------------------------------------------------------------------------------------------------
+    # By Callum Walters w1828868
+
+    # View for Team Leader to see overall team summary
+@login_required(login_url='sky_login')
+def teamleader_summary(request):
+    # The currently logged-in user
+    user = request.user
+
+    # Checks if user has the correct role
+    if not hasattr(user, 'role') or user.role.strip().lower() != "team leader":
+        messages.error(request, "You do not have permission to view this page.")
+        return redirect('sky_home')
+
+    return render(request, 'sky/teamLeaderSummary.html')
+
+
+@login_required(login_url='sky_login')
+def engineer_summary(request):
+    # The currently logged-in user
+    user = request.user
+
+    # Checks if user is an Engineer
+    if not hasattr(user, 'role') or user.role.strip().lower() != "engineer":
+        messages.error(request, "You do not have permission to view this page.")
+        return redirect('sky_home')
+
+    return render(request, 'sky/engineerSummary.html')  
+
+@login_required(login_url='sky_login')
+def departmentleader_summary(request):
+    user = request.user
+
+    if not hasattr(user, 'role') or user.role.strip().lower() != "department leader":
+        messages.error(request, "You do not have permission to view this page.")
+        return redirect('sky_home')
+
+    # Generate 1–10 cards
+    card_range = range(1, 11)
+
+@login_required(login_url='sky_login')
+def seniormanager_summary(request):
+    user = request.user
+
+    if not hasattr(user, 'role') or user.role.strip().lower() != "senior manager":
+        messages.error(request, "You do not have permission to view this page.")
+        return redirect('sky_home')
+
+    return render(request, 'sky/seniorManagerSummary.html', {
+        'card_range': range(1, 11)
+    })
+
+
+    return render(request, 'sky/departmentleaderSummary.html', {'card_range': card_range})
+
+
+  #By Callum Walters w1828868
+#-----------------------------------------------------------------------------------------

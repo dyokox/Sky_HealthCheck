@@ -15,5 +15,22 @@ urlpatterns = [
     # the profile page
     path("profile", views.profile, name="profile"),
     # the admin login page
-    path("adminLog", views.admin_login, name="admin_login")
+    path("adminLog", views.admin_login, name="admin_login"),
+#--------------------------------------------------------------------------------------------------
+    # By Callum Walters w1828868
+
+    # the team summary page 
+    path('teamleader_summary/', views.teamleader_summary, name="teamleader_summary"),
+
+    # Engineer summary page
+    path('engineer_summary/', views.engineer_summary, name="engineer_summary"),
+
+    # the department leader summary page
+    path('departmentleader_summary/', views.departmentleader_summary, name="departmentleader_summary"),
+
+    # the senior manager summary page
+    path('seniormanager_summary/', views.seniormanager_summary, name="seniormanager_summary"),
+
+#-------------------------------------------------------------------------------------------------------------
+
 ]
