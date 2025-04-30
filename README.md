@@ -21,6 +21,13 @@ A group project consisting of 5 members:
 - User Profile `http://127.0.0.1:8000/profile/`
 
 ### Galhardo Milena (@milenaag)
+- Admin login 'http://127.0.0.1:8000/login/'
+- admin panel 'http://127.0.0.1:8000/admin/'
+- team list dashboard home ' http://127.0.0.1:8000/'
+- 
+
+
+
 ### Hayrapetyan Shushanik (@girlfromsunflower)
 ### Rodrigues Abigail (@abigailrodr)
 - models.py file
