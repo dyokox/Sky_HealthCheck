@@ -13,9 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #e3871e;
-    background: linear-gradient(47deg,rgba(227, 135, 30, 1) 0%, rgba(207, 29, 12, 1) 23%, rgba(199, 87, 192, 1) 50%, rgba(23, 63, 156, 1) 77%, rgba(108, 215, 224, 1) 100%);
-    color: #333;
+    background: #f8f9fa;
 }
 
 .container {
@@ -28,7 +26,7 @@ body {
     padding: 30px;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 20);
 }
 
 h2 {
@@ -52,7 +50,7 @@ input, select {
 button {
     width: 100%;
     padding: 12px;
-    background: #7494ec;
+    background: #007BFF;
     border-radius: 6px;
     border: none;
     cursor: pointer;
@@ -64,7 +62,7 @@ button {
 }
 
 button:hover {
-    background: #6884d3;
+    background: #0056b3;
 }
 
 p {
