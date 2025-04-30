@@ -14,17 +14,17 @@ A group project consisting of 5 members:
 
 ## Tasks
 ### Corina Muntean (@dyokox)
-- Register `127.0.0.1:8000/register`
-- Login `127.0.0.1:8000/login`
-- Admin Login `127.0.0.1:8000/adminLog`
-- Logout `127.0.0.1:8000/logout`
-- User Profile `127.0.0.1:8000/profile`
+- Register `http://127.0.0.1:8000/register/`
+- Login `http://127.0.0.1:8000/login/`
+- Admin Login `http://127.0.0.1:8000/adminLog/`
+- Logout `http://127.0.0.1:8000/logout/`
+- User Profile `http://127.0.0.1:8000/profile/`
 
 ### Galhardo Milena (@milenaag)
 ### Hayrapetyan Shushanik (@girlfromsunflower)
 ### Rodrigues Abigail (@bigailrodr)
 ### Walters Callum (@kadeen389)
-- Engineer vote summary page `http://127.0.0.1:8000/engineer_summary/`
-- Team Leader vote summary page `http://127.0.0.1:8000/teamleader_summary/`
-- Department leader vote summary page `http://127.0.0.1:8000/departmentleader_summary/`
-- Senior manager vote summary page `http://127.0.0.1:8000/seniormanager_summary/`
+- Engineer Vote Summary Page `http://127.0.0.1:8000/engineer_summary/`
+- Team Leader Vote Summary Page `http://127.0.0.1:8000/teamleader_summary/`
+- Department Leader Vote Summary Page `http://127.0.0.1:8000/departmentleader_summary/`
+- Senior Manager Vote Summary Page `http://127.0.0.1:8000/seniormanager_summary/`
