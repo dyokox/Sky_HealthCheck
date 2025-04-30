@@ -191,9 +191,17 @@ def engineer_summary(request):
 def departmentleader_summary(request):
     user = request.user
 
+    # Permission check
     if not hasattr(user, 'role') or user.role.strip().lower() != "department leader":
         messages.error(request, "You do not have permission to view this page.")
         return redirect('sky_home')
+
+    # Generate card data (after permission check)
+    card_range = range(1, 11)
+
+    # Return the correct page
+    return render(request, 'sky/departmentLeaderSummary.html', {'card_range': card_range})
+
 
     # Generate 1–10 cards
     card_range = range(1, 11)
@@ -211,8 +219,4 @@ def seniormanager_summary(request):
     })
 
 
-    return render(request, 'sky/departmentleaderSummary.html', {'card_range': card_range})
-
-
-  #By Callum Walters w1828868
 #-----------------------------------------------------------------------------------------

@@ -18,3 +18,24 @@ class User(AbstractUser):
     # This is also how it will be shown in the Django Admin Panel
     def __str__(self):
         return f"{self.fullname} - {self.username}"
+#------------------------------------------------------------------------------------------
+# By Callum Walters
+
+# New model to store votes
+class Vote(models.Model):
+    VOTE_CHOICES = [
+        ('green', 'Green'),
+        ('amber', 'Amber'),
+        ('red', 'Red'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    card = models.CharField(max_length=50)
+    session = models.CharField(max_length=50)
+    choice = models.CharField(max_length=10, choices=VOTE_CHOICES)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} voted {self.choice} on {self.card} in {self.session}"
+#--------------------------------------------------------------------------------------------------
+
