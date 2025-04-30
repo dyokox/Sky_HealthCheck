@@ -30,6 +30,9 @@ A group project consisting of 5 members:
 ### Rodrigues Abigail (@abigailrodr)
 - `models.py` File (co-authored)
 - Admin Healthcard CRUD Operations `http://127.0.0.1:8000/admin.py/`
+- Recorded & edited video demo
+- Wrote group template
+- Made the website cohesive and connected
   
 ### Walters Callum (@kadeen389)
 - Engineer Vote Summary Page `http://127.0.0.1:8000/engineer_summary/`
