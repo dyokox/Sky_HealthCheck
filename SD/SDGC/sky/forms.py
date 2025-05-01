@@ -3,6 +3,8 @@ from .models import User
 # Allows the customization of form fields
 from django.forms import TextInput, EmailInput, PasswordInput
 
+#------------------------------------------------------------------------------------------
+# By Corina Muntean // w1993775
 
 # Created a form class for the registration of user
 class CreateUserForm(forms.ModelForm):
@@ -30,3 +32,4 @@ class CreateUserForm(forms.ModelForm):
             raise forms.ValidationError("Email is already registered")
         # If email is not registered already, it can be used
         return email
+#------------------------------------------------------------------------------------------
