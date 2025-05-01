@@ -1,7 +1,10 @@
 from django import forms
 from .models import User
+from .models import Vote
 # Allows the customization of form fields
 from django.forms import TextInput, EmailInput, PasswordInput
+from django.forms import modelformset_factory
+
 
 #------------------------------------------------------------------------------------------
 # By Corina Muntean // w1993775
@@ -33,3 +36,20 @@ class CreateUserForm(forms.ModelForm):
         # If email is not registered already, it can be used
         return email
 #------------------------------------------------------------------------------------------
+
+# By Shushanik Hayrapetyan w1969574
+
+class VoteForm(forms.ModelForm):
+    class Meta:
+        model = Vote
+        fields = ['card', 'vote', 'progress']
+        widgets = {
+            'vote': forms.RadioSelect(choices=Vote.VOTE_CHOICES),
+            'progress': forms.RadioSelect(choices=Vote.PROGRESS_CHOICES),
+        }
+
+VoteFormSet = modelformset_factory(
+    Vote,
+    form=VoteForm,
+    extra=0
+)
