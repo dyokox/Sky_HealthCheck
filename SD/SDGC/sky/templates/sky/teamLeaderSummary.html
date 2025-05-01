@@ -1,0 +1,203 @@
+<!--Authored by Callum Walters w1828868-->
+
+<!--
+  Vote data is currently simulated for demo purposes. A Django model (Vote) has been created to store real votes in db.sqlite3.
+  (Back-end vote recording is part of a teammate’s task and not yet completed/merged.)
+-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Leader Summary</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'voteSummary.css' %}">
+    <!-- To make graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+</head>
+<body>
+
+    <div class="container">
+
+         <!-- Back to home page button -->
+    <div class="button-group" style="text-align: right; margin-bottom: 20px;">
+        <a href="{% url 'sky_home' %}" class="btn"> Back to Home</a>
+    </div>
+
+        <!-- Small role label -->
+        <div class="small-header">Team Leader</div>
+    
+        <!-- Main Title -->
+        <h1 class="main-title">Votes Overview</h1>
+    
+   <!-- Dropdowns/ testing data for now -->
+   <div class="dropdown-group">
+    <select id="teamDropdown" onchange="updateDisplay()">
+        <option value="">-- Select Team --</option>
+        <option value="All">All Teams</option>
+        <option value="Team A">Team A</option>
+        <option value="Team B">Team B</option>
+        <option value="Team C">Team C</option>
+        <option value="Team D">Team D</option>
+        <option value="Team E">Team E</option>
+    </select>
+
+    <select id="cardDropdown" onchange="updateDisplay()">
+        <option value="">-- Select Card --</option>
+        <option value="Card 1">Card 1</option>
+        <option value="Card 2">Card 2</option>
+        <option value="Card 3">Card 3</option>
+        <option value="Card 4">Card 4</option>
+        <option value="Card 5">Card 5</option>
+        <option value="Card 6">Card 6</option>
+        <option value="Card 7">Card 7</option>
+        <option value="Card 8">Card 8</option>
+        <option value="Card 9">Card 9</option>
+        <option value="Card 10">Card 10</option>
+    </select>
+</div>
+
+
+<div id="summaryArea">
+    <!-- session summary cards will appear here -->
+</div>
+
+<!-- Charts -->
+<h2>Overall Votes </h2>
+<canvas id="votesChart" width="400" height="200"></canvas>
+
+<h2>Green Votes Progress </h2>
+<canvas id="greenLineChart" width="400" height="200"></canvas>
+</div>
+
+<script>
+// Test data for now
+const teams = ["Team A", "Team B", "Team C", "Team D", "Team E"];
+const cards = ["Card 1", "Card 2", "Card 3", "Card 4", "Card 5", "Card 6", "Card 7", "Card 8", "Card 9", "Card 10"];
+const sessions = ["Session 1", "Session 2", "Session 3", "Session 4", "Session 5"];
+
+const votesData = {};
+teams.forEach(team => {
+    votesData[team] = {};
+    cards.forEach(card => {
+        votesData[team][card] = {};
+        sessions.forEach(session => {
+            votesData[team][card][session] = {
+                green: Math.floor(Math.random() * 10),
+                amber: Math.floor(Math.random() * 5),
+                red: Math.floor(Math.random() * 3)
+            };
+        });
+    });
+});
+
+let barChart, lineChart;
+
+function updateDisplay() {
+    const selectedTeam = document.getElementById('teamDropdown').value;
+    const selectedCard = document.getElementById('cardDropdown').value;
+    const summaryDiv = document.getElementById('summaryArea');
+    summaryDiv.innerHTML = '';
+
+    if (!selectedCard) {
+    summaryDiv.innerHTML = `
+        <div style="width:100%; text-align:center; margin-top:20px;">
+            <p style="font-weight:bold; font-size:1.2rem;">
+                Please select a Card to view results.
+            </p>
+        </div>
+    `;
+    if (barChart) barChart.destroy();
+    if (lineChart) lineChart.destroy();
+    return;
+}
+
+    
+
+    let greenVotes = [];
+    let amberVotes = [];
+    let redVotes = [];
+
+    sessions.forEach(session => {
+        let green = 0, amber = 0, red = 0;
+
+        if (selectedTeam === 'All') {
+            teams.forEach(team => {
+                if (votesData[team] && votesData[team][selectedCard] && votesData[team][selectedCard][session]) {
+                    green += votesData[team][selectedCard][session].green || 0;
+                    amber += votesData[team][selectedCard][session].amber || 0;
+                    red += votesData[team][selectedCard][session].red || 0;
+                }
+            });
+        } else if (selectedTeam) {
+            if (votesData[selectedTeam] && votesData[selectedTeam][selectedCard] && votesData[selectedTeam][selectedCard][session]) {
+                green = votesData[selectedTeam][selectedCard][session].green || 0;
+                amber = votesData[selectedTeam][selectedCard][session].amber || 0;
+                red = votesData[selectedTeam][selectedCard][session].red || 0;
+            }
+        }
+
+        greenVotes.push(green);
+        amberVotes.push(amber);
+        redVotes.push(red);
+
+        summaryDiv.innerHTML += `
+            <div class="session-summary">
+                <h2>${session}</h2>
+                <ul>
+                    <li>✅ Green Votes: ${green}</li>
+                    <li>🟡 Amber Votes: ${amber}</li>
+                    <li>🔴 Red Votes: ${red}</li>
+                </ul>
+            </div>
+        `;
+    });
+
+    updateCharts(greenVotes, amberVotes, redVotes);
+}
+
+function updateCharts(greenVotes, amberVotes, redVotes) {
+    const ctx = document.getElementById('votesChart').getContext('2d');
+    const ctx2 = document.getElementById('greenLineChart').getContext('2d');
+
+    if (barChart) barChart.destroy();
+    if (lineChart) lineChart.destroy();
+
+    barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: sessions,
+            datasets: [
+                { label: 'Green Votes', backgroundColor: 'green', data: greenVotes },
+                { label: 'Amber Votes', backgroundColor: 'orange', data: amberVotes },
+                { label: 'Red Votes', backgroundColor: 'red', data: redVotes }
+            ]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+
+    lineChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: sessions,
+            datasets: [{
+                label: 'Green Votes Progress',
+                backgroundColor: 'lightgreen',
+                borderColor: 'green',
+                data: greenVotes,
+                fill: false,
+                tension: 0.3
+            }]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+}
+
+// Start page
+window.onload = updateDisplay;
+</script>
+
+
+</body>
+</html>

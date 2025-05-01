@@ -1,0 +1,110 @@
+/* Authored by Callum Walters */
+
+/* Team Summary page style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Safe built-in font */
+}
+
+/* Overall page */
+body {
+    background: #f8f9fa;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container */
+.container {
+    margin: 30px auto;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+/* Small label like "Team Leader" */
+.small-header {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Main page title */
+.main-title {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Dropdown styling */
+.dropdown-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.dropdown-group select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: white;
+    min-width: 200px;
+}
+
+/* Session summaries layout */
+#summaryArea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+/* Each session card */
+.session-summary {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 48%;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.session-summary h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.session-summary ul {
+    list-style: none;
+    padding: 0;
+}
+
+.session-summary li {
+    font-size: 1rem;
+    padding: 6px 0;
+}
+
+/* Button back to Home */
+.button-group {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}

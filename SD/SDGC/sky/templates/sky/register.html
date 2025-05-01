@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky - Sign Up</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Registration Form -->
+        <div class="form-box" id="register-form">
+            <form method="POST" action="{% url 'register' %}">
+                <!-- Security token preventing any CSRF attacks -->
+                {% csrf_token %}
+                <h2>Register</h2>
+                <!-- Django form for registering a user -->
+                 <!-- Generates the label for fullname -->
+                {{ form.fullname.label_tag }}
+                <!-- Generates the input for the fullname -->
+                {{ form.fullname }}
+                <!-- Dispplays any validation errors -->
+                {{ form.fullname.errors }}
+                
+                <!-- Same as fullname, but for username -->
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+                
+                <!-- Same as fullname, but for email -->
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+                
+                <!-- Same as fullname, but for password -->
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {{ form.password.errors }}
+                
+                <!-- Submits the form -->
+                <button type="submit">Create an Account</button>
+                <!-- If the user already has an account, they can login -->
+                <p>Already have an account? <a href="{% url 'sky_login' %}">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loads the JavaScript elements-->    
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

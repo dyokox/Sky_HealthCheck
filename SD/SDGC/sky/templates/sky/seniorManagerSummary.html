@@ -1,0 +1,208 @@
+<!--- Authored by Callum Walters w1828868-->
+
+<!--
+  Vote data is currently simulated for demo purposes. A Django model (Vote) has been created to store real votes in db.sqlite3.
+  (Back-end vote recording is part of a teammate’s task and not yet completed/merged.)
+-->
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Senior Manager Summary</title>
+    <link rel="stylesheet" href="{% static 'voteSummary.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Back Home Button -->
+    <div class="button-group" style="text-align: right; margin-bottom: 20px;">
+        <a href="{% url 'sky_home' %}" class="btn"> Back to Home</a>
+    </div>
+
+    <!-- Role Label -->
+    <div class="small-header">Senior Manager</div>
+    <h1 class="main-title">Overview of All Departments</h1>
+
+    <!-- Dropdowns -->
+    <div class="dropdown-group">
+        <select id="viewMode" onchange="updateDisplay()">
+            <option value="department">Department Summary</option>
+            <option value="team">Team Details</option>
+        </select>
+
+        <select id="entityDropdown" onchange="updateDisplay()">
+        </select>
+
+        <select id="cardDropdown" onchange="updateDisplay()">
+            <option value="">-- Select Card --</option>
+            {% for i in card_range %}
+                <option value="Card {{ i }}">Card {{ i }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Summary Display -->
+    <div id="summaryArea"></div>
+
+    <!-- Charts -->
+    <h2>Vote Totals</h2>
+    <canvas id="votesChart" width="400" height="200"></canvas>
+
+    <h2>Green Votes Over Time</h2>
+    <canvas id="greenLineChart" width="400" height="200"></canvas>
+
+</div>
+
+<script>
+// --- Test Data Setup ---
+const sessions = ["Session 1", "Session 2", "Session 3", "Session 4", "Session 5"];
+const departments = {
+    "Department A": ["Team A1", "Team A2"],
+    "Department B": ["Team B1", "Team B2"],
+    "Department C": ["Team C1", "Team C2"]
+};
+const cards = Array.from({ length: 10 }, (_, i) => `Card ${i + 1}`);
+const votesData = {};
+for (const dept in departments) {
+    votesData[dept] = {};
+    departments[dept].forEach(team => {
+        votesData[dept][team] = {};
+        cards.forEach(card => {
+            votesData[dept][team][card] = {};
+            sessions.forEach(session => {
+                votesData[dept][team][card][session] = {
+                    green: Math.floor(Math.random() * 10),
+                    amber: Math.floor(Math.random() * 5),
+                    red: Math.floor(Math.random() * 3)
+                };
+            });
+        });
+    });
+}
+
+let barChart, lineChart;
+
+function updateEntityDropdown() {
+    const viewMode = document.getElementById("viewMode").value;
+    const entitySelect = document.getElementById("entityDropdown");
+    entitySelect.innerHTML = `<option value="">-- Select ${viewMode === 'department' ? 'Department' : 'Team'} --</option><option value="All">All</option>`;
+
+    if (viewMode === "department") {
+        for (const dept in departments) {
+            entitySelect.innerHTML += `<option value="${dept}">${dept}</option>`;
+        }
+    } else {
+        for (const dept in departments) {
+            departments[dept].forEach(team => {
+                entitySelect.innerHTML += `<option value="${team}">${dept} - ${team}</option>`;
+            });
+        }
+    }
+}
+
+function updateDisplay() {
+    const viewMode = document.getElementById("viewMode").value;
+    const selectedEntity = document.getElementById("entityDropdown").value;
+    const selectedCard = document.getElementById("cardDropdown").value;
+    const summaryDiv = document.getElementById("summaryArea");
+    summaryDiv.innerHTML = '';
+
+    if (!selectedCard) {
+        summaryDiv.innerHTML = `<p style="text-align:center; font-weight:bold;">Please select a Card to view.</p>`;
+        return;
+    }
+
+    let greenVotes = [], amberVotes = [], redVotes = [];
+
+    sessions.forEach(session => {
+        let green = 0, amber = 0, red = 0;
+
+        for (const dept in votesData) {
+            for (const team in votesData[dept]) {
+                const vote = votesData[dept][team][selectedCard][session];
+                const include =
+                    selectedEntity === "All" ||
+                    (viewMode === "department" && selectedEntity === dept) ||
+                    (viewMode === "team" && selectedEntity === team);
+
+                if (include) {
+                    green += vote.green;
+                    amber += vote.amber;
+                    red += vote.red;
+                }
+            }
+        }
+
+        greenVotes.push(green);
+        amberVotes.push(amber);
+        redVotes.push(red);
+
+        summaryDiv.innerHTML += `
+            <div class="session-summary">
+                <h2>${session}</h2>
+                <ul>
+                    <li>✅ Green Votes: ${green}</li>
+                    <li>🟡 Amber Votes: ${amber}</li>
+                    <li>🔴 Red Votes: ${red}</li>
+                </ul>
+            </div>
+        `;
+    });
+
+    updateCharts(greenVotes, amberVotes, redVotes);
+}
+
+function updateCharts(greenVotes, amberVotes, redVotes) {
+    const ctx = document.getElementById("votesChart").getContext("2d");
+    const ctx2 = document.getElementById("greenLineChart").getContext("2d");
+
+    if (barChart) barChart.destroy();
+    if (lineChart) lineChart.destroy();
+
+    barChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: sessions,
+            datasets: [
+                { label: "Green Votes", backgroundColor: "green", data: greenVotes },
+                { label: "Amber Votes", backgroundColor: "orange", data: amberVotes },
+                { label: "Red Votes", backgroundColor: "red", data: redVotes }
+            ]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+
+    lineChart = new Chart(ctx2, {
+        type: "line",
+        data: {
+            labels: sessions,
+            datasets: [{
+                label: "Green Votes Progress",
+                data: greenVotes,
+                borderColor: "green",
+                backgroundColor: "lightgreen",
+                fill: false,
+                tension: 0.3
+            }]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+}
+
+window.onload = () => {
+    updateEntityDropdown();
+    updateDisplay();
+    document.getElementById("viewMode").addEventListener("change", () => {
+        updateEntityDropdown();
+        updateDisplay();
+    });
+};
+</script>
+
+</body>
+</html>
