@@ -8,10 +8,11 @@ from . import views
 
 # URL patterns for the Sky app
 urlpatterns = [
-#--------------------------------------------------------------------------------------------------
-    # By Corina Muntean // w1993775
     # home page
     path('', views.home, name="sky_home"),
+#--------------------------------------------------------------------------------------------------
+    # By Corina Muntean // w1993775
+    
     # the login page
     path("login", views.login_user, name="sky_login"),
     # the register page
@@ -20,8 +21,6 @@ urlpatterns = [
     path("logout", views.logout_user, name="logout_user"),
     # the profile page
     path("profile", views.profile, name="profile"),
-    # the admin login page
-    path("adminLog", views.admin_login, name="admin_login"),
 #--------------------------------------------------------------------------------------------------
     # By Callum Walters w1828868
 
