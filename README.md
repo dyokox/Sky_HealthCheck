@@ -39,3 +39,19 @@ A group project consisting of 5 members:
 - Team Leader Vote Summary Page `http://127.0.0.1:8000/teamleader_summary/`
 - Department Leader Vote Summary Page `http://127.0.0.1:8000/departmentleader_summary/`
 - Senior Manager Vote Summary Page `http://127.0.0.1:8000/seniormanager_summary/`
+
+Login details to access these pages:
+ - Engineer
+     username: Engineer
+     password: Engineer123
+- Team Leader
+     username: TeamLeader
+     password: Teamleader123
+- Department Leader
+     username: DepartmentLeader
+     password: Departmentleader123
+- Senior Manager
+     username: SeniorManager
+     password: Seniormanager123
+ 
+  
