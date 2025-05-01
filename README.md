@@ -27,6 +27,7 @@ A group project consisting of 5 members:
 - add new http://127.0.0.1:8000/add/
 - edit http://127.0.0.1:8000/edit/4/
 - delete http://127.0.0.1:8000/delete/7/
+- log out http://127.0.0.1:8000/admin/logout/
 
 
 ## Hayrapetyan Shushanik (@girlfromsunflower)
