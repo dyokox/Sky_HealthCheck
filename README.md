@@ -18,11 +18,17 @@ A group project consisting of 5 members:
 - Login `http://127.0.0.1:8000/login/`
 - Logout `http://127.0.0.1:8000/logout/`
 - User Profile `http://127.0.0.1:8000/profile/`
+- Navbar `navbar.css` & `navbar.html`
 
 ## Galhardo Milena (@milenaag)
 - Admin Login `http://127.0.0.1:8000/login/`
 - Admin Panel `http://127.0.0.1:8000/admin/`
 - Team List Dashboard `http://127.0.0.1:8000/`
+- add new http://127.0.0.1:8000/add/
+- edit http://127.0.0.1:8000/edit/4/
+- delete http://127.0.0.1:8000/delete/7/
+- log out http://127.0.0.1:8000/admin/logout/
+
 
 ## Hayrapetyan Shushanik (@girlfromsunflower)
 

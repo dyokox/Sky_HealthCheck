@@ -1,0 +1,59 @@
+<!-- Authored by Corina Muntean, Callum Walters -->
+<!-- Authored by Corina Muntean -->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <div class="navbar-links">
+
+            {% if user.is_authenticated %}
+<!--  -->
+                <!-- By Callum Walters w1828868 -->
+
+                <!-- View Summary button based on user role -->
+                <div>
+                    {% if user.role|lower == "team leader" %}
+                        <div class="summary-button">
+                            <a href="{% url 'teamleader_summary' %}" class="btn">View Summary</a>
+                        </div>
+                    {% elif user.role|lower == "engineer" %}
+                        <div class="summary-button">
+                            <a href="{% url 'engineer_summary' %}" class="btn">View Summary</a>
+                        </div>
+                    {% elif user.role|lower == "department leader" %}
+                        <div class="summary-button">
+                            <a href="{% url 'departmentleader_summary' %}" class="btn">View Summary</a>
+                        </div>
+                    {% elif user.role|lower == "senior manager" %}
+                        <div class="summary-button">
+                            <a href="{% url 'seniormanager_summary' %}" class="btn">View Summary</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Message display -->
+                {% if messages %}
+                <div style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 60%; text-align: center;">
+                    <ul style="list-style: none; padding: 15px 20px; margin: 0 auto; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 6px; font-size: 1rem;">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            <!-- Authored by Corina Muntean -->
+                <!-- Authenticated user links -->
+                <a href="{% url 'profile' %}">User Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+
+            {% else %}
+                <!-- Unauthenticated user links -->
+                <a href="{% url 'sky_login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+            <!--  -->
+        </div>
+    </div>
+</nav>
