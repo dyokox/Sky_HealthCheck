@@ -6,34 +6,39 @@
     <title>Sky - Login</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
 </head> 
 <body>
-    <div class="container">
-        <div class="form-box" id="login-form">
-            <form method="POST" action="{% url 'sky_login' %}">
-                <!-- Allows for a secure login -->
-                {% csrf_token %}
-                <h2>Login</h2>
-                <!-- Username input field, with an example how a username can look -->
-                Username<input type="text" name="username" placeholder="johndoe" required>
-                <!-- Password input field, with an example how a password can look -->
-                Password<input type="password" name="password" placeholder="Password123" required>
-                <button type="submit">Login</button>
-                <!-- If user doesn't have an account, they can register -->
-                <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-                <!-- Offers a separate secure area for admins to log in -->
-                <p>An admin? <a href="{% url 'admin_login' %}">Admin Login</a></p>
-                <!-- Displays error messages -->
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-                                {{ message }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </form>
+    {% include 'sky/navbar.html' %}
+    {% block content %}{% endblock %}
+    <div class="page-content">
+        <div class="container">
+            <div class="form-box" id="login-form">
+                <form method="POST" action="{% url 'sky_login' %}">
+                    <!-- Allows for a secure login -->
+                    {% csrf_token %}
+                    <h2>Login</h2>
+                    <!-- Username input field, with an example how a username can look -->
+                    Username<input type="text" name="username" placeholder="johndoe" required>
+                    <!-- Password input field, with an example how a password can look -->
+                    Password<input type="password" name="password" placeholder="Password123" required>
+                    <button type="submit">Login</button>
+                    <!-- If user doesn't have an account, they can register -->
+                    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+                    <!-- Offers a separate secure area for admins to log in -->
+                    <p>An admin? <a href="#">Admin Login</a></p>
+                    <!-- Displays error messages -->
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                    {{ message }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </form>
+            </div>
         </div>
     </div>
     <!-- Loads the JS file -->
