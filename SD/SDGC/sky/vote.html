@@ -1,0 +1,14 @@
+<h2>Health Check Voting</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <div>
+            <strong>{{ form.card.value }}</strong><br>
+            {{ form.vote }}
+            {{ form.progress }}
+        </div>
+        <hr>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
