@@ -4,8 +4,12 @@ from django.urls import path
 # Imports the views.py
 from . import views
 
+
+
 # URL patterns for the Sky app
 urlpatterns = [
+#--------------------------------------------------------------------------------------------------
+    # By Corina Muntean // w1993775
     # home page
     path('', views.home, name="sky_home"),
     # the login page
