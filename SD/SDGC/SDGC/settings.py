@@ -129,3 +129,7 @@ AUTH_USER_MODEL = 'sky.User'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+
+# By Shushanik HAyrapetyan-W1969574
+LOGIN_URL = '/sky/login/'
