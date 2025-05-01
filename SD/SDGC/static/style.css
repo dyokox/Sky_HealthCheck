@@ -9,11 +9,16 @@
 }
 
 body {
+    margin: 0;
+    background: #f8f9fa;
+}
+
+.page-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: #f8f9fa;
+    min-height: calc(100vh - 60px);
+    padding-top: 20px;
 }
 
 .container {
