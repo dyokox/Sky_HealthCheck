@@ -1,5 +1,7 @@
 from django.shortcuts import redirect
 
+#------------------------------------------------------------------------------------------
+# By Corina Muntean // w1993775
 """
 Created a custom decorator "logout_required" as I wanted the user to be able to access:
 - register.html
@@ -13,3 +15,4 @@ def logout_required(view_func):
             return redirect('sky_home')
         return view_func(request, *args, **kwargs)
     return wrapper
+#------------------------------------------------------------------------------------------
