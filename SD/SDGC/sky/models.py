@@ -3,6 +3,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+#------------------------------------------------------------------------------------------
+# By Corina Muntean // w1993775
+
 # Creating a custom user model, which inherits from Django's AbstractUser
 class User(AbstractUser):
     fullname = models.CharField(max_length=255)
@@ -20,6 +23,8 @@ class User(AbstractUser):
     # This is also how it will be shown in the Django Admin Panel
     def __str__(self):
         return f"{self.fullname} - {self.username}"
+#-----------------------------------------------------------------------------------------
+
 #------------------------------------------------------------------------------------------
 # By Callum Walters
 
