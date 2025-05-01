@@ -25,5 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # All other URL are defined in the sky app
     path('', include("sky.urls")),
+
+     #By Shushanik Hayrapetyan-w1969574
+    path('', include('sky.urls')),
 ]
 #------------------------------------------------------------------------------------------
