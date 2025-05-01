@@ -31,12 +31,12 @@ A group project consisting of 5 members:
 
 
 ## Hayrapetyan Shushanik (@girlfromsunflower)
--Developed and integrated the voting system
--Implemented Vote, Card, and Session models in models.py
--Created VoteForm and VoteFormSet in forms.py
--Built the submit_vote view and URL route: http://127.0.0.1:8000/vote/
--Designed and linked the vote.html template
--Ensured votes are linked to user sessions and cards
+- Developed and integrated the voting system
+- Implemented Vote, Card, and Session models in models.py
+- Created VoteForm and VoteFormSet in forms.py
+- Built the submit_vote view and URL route: http://127.0.0.1:8000/vote/
+- Designed and linked the vote.html template
+- Ensured votes are linked to user sessions and cards
 
 ## Rodrigues Abigail (@abigailrodr)
 - `models.py` File (co-authored)
