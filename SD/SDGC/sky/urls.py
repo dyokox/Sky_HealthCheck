@@ -1,8 +1,10 @@
-# Authored by Corina Muntean, Callum Walters
+# Authored by Corina Muntean, Callum Walters, Shushanik Hayrapetyan
 
 from django.urls import path
 # Imports the views.py
 from . import views
+from django.urls import reverse_lazy
+
 
 
 
@@ -38,4 +40,10 @@ urlpatterns = [
 
 #-------------------------------------------------------------------------------------------------------------
 
+# By Shushanik Hayrapetyan - W1969574
+
+    path('vote/', views.submit_vote, name='submit_vote'),
+    path('login/', views.login_user, name='sky_login'),
+
+]
 ]
