@@ -46,4 +46,3 @@ urlpatterns = [
     path('login/', views.login_user, name='sky_login'),
 
 ]
-]
