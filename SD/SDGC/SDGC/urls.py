@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render, redirect
 
-# 
+#------------------------------------------------------------------------------------------
+# By Corina Muntean // w1993775
 urlpatterns = [
     # admin panel
     path('admin/', admin.site.urls),
     # All other URL are defined in the sky app
     path('', include("sky.urls")),
 ]
+#------------------------------------------------------------------------------------------
