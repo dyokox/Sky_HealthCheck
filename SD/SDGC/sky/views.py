@@ -132,40 +132,6 @@ def profile(request):
     # Renders the page
     return render(request, 'sky/profile.html')
 
-
-# User can only access adminLog.html if they are logged out
-@logout_required
-def admin_login(request):
-    # Checks the method used by the form
-    if request.method == "POST":
-        # Retrieves the username
-        username = request.POST.get("username")
-        # Retrieves the password
-        password = request.POST.get("password")
-
-        # Authenticates the user with Django's built in method
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            # Checks if the user's role is not Engineer
-            if user.role.strip().lower() != "engineer":
-                # If its not engineer, logs the user in
-                login(request, user)
-                # Visual confirmation that the user logged in
-                messages.success(request, f"Welcome {user.username}! You are logged in as {user.role}.")
-                # Redirects the user to the home page
-                return redirect('sky_home')
-            # Tells the user they do not have permission toa acccess the admin login
-            else:
-                messages.error(request, "You do not have permission to access the Admin Login.")
-                # Sends the user to normal login page
-                return redirect('sky_login')
-        # Tells the user they got their username and/or password wrong
-        else:
-            messages.error(request, "Invalid username and/or password.")
-
-    return render(request, 'sky/adminLog.html')
-
 # ----------------------------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------------------------
