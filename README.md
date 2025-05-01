@@ -18,6 +18,7 @@ A group project consisting of 5 members:
 - Login `http://127.0.0.1:8000/login/`
 - Logout `http://127.0.0.1:8000/logout/`
 - User Profile `http://127.0.0.1:8000/profile/`
+- Navbar `navbar.css` & `navbar.html`
 
 ## Galhardo Milena (@milenaag)
 - Admin Login `http://127.0.0.1:8000/login/`
