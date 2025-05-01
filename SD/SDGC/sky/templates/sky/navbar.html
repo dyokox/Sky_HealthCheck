@@ -1,3 +1,5 @@
+<!-- Authored by Corina Muntean, Callum Walters -->
+<!-- Authored by Corina Muntean -->
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
 
@@ -7,6 +9,7 @@
         <div class="navbar-links">
 
             {% if user.is_authenticated %}
+<!--  -->
                 <!-- By Callum Walters w1828868 -->
 
                 <!-- View Summary button based on user role -->
@@ -40,7 +43,7 @@
                     </ul>
                 </div>
                 {% endif %}
-
+            <!-- Authored by Corina Muntean -->
                 <!-- Authenticated user links -->
                 <a href="{% url 'profile' %}">User Profile</a>
                 <a href="{% url 'logout_user' %}">Logout</a>
@@ -50,7 +53,7 @@
                 <a href="{% url 'sky_login' %}">Login</a>
                 <a href="{% url 'register' %}">Register</a>
             {% endif %}
-
+            <!--  -->
         </div>
     </div>
 </nav>
