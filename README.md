@@ -16,7 +16,6 @@ A group project consisting of 5 members:
 ## Corina Muntean (@dyokox)
 - Register `http://127.0.0.1:8000/register/`
 - Login `http://127.0.0.1:8000/login/`
-- Admin Login `http://127.0.0.1:8000/adminLog/`
 - Logout `http://127.0.0.1:8000/logout/`
 - User Profile `http://127.0.0.1:8000/profile/`
 
