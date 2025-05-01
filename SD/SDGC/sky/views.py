@@ -21,6 +21,10 @@ from .decorators import logout_required
 def home(request):
     return render(request, 'sky/home.html')
 
+
+# ----------------------------------------------------------------------------------------------------------
+# By Corina Muntean // w1993775
+
 # Only logout users can access a login page
 @logout_required
 def login_user(request):
@@ -161,6 +165,9 @@ def admin_login(request):
             messages.error(request, "Invalid username and/or password.")
 
     return render(request, 'sky/adminLog.html')
+
+# ----------------------------------------------------------------------------------------------------------
+
 # ----------------------------------------------------------------------------------------------------------
     # By Callum Walters w1828868
 
