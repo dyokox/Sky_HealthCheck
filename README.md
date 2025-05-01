@@ -58,5 +58,8 @@ A group project consisting of 5 members:
 - Senior Manager
      username: SeniorManager
      password: Seniormanager123
+-admin
+     username: mg
+     password: mi123456l
  
   
