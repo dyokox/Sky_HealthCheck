@@ -1,5 +1,4 @@
-# Authored by Corina Muntean, Callum Walters
-
+# Authored by Corina Muntean, Callum Walters, Shushanik Hayrapetyan
 
 from django.shortcuts import render, redirect
 # Hashes passwords, making it secure
@@ -16,6 +15,9 @@ from django.contrib.auth import authenticate, login, logout
 # Importing the custom decorator preventing logged users to access 
 # certain pages
 from .decorators import logout_required
+from .models import Card, Session, Vote
+from .forms import VoteFormSet
+
 
 # View for the home pagee
 def home(request):
@@ -196,3 +198,26 @@ def seniormanager_summary(request):
 
 
 #-----------------------------------------------------------------------------------------
+
+# By Shushanik Hayrapetyan
+
+@login_required
+def submit_vote(request):
+    user = request.user
+    session = Session.objects.first()  # use latest or allow selection
+    cards = Card.objects.all()
+
+    # Ensure one vote per user/card/session
+    for card in cards:
+        Vote.objects.get_or_create(user=user, session=session, card=card)
+
+    queryset = Vote.objects.filter(user=user, session=session)
+    formset = VoteFormSet(queryset=queryset)
+
+    if request.method == "POST":
+        formset = VoteFormSet(request.POST, queryset=queryset)
+        if formset.is_valid():
+            formset.save()
+            return redirect('engineer_summary')  
+
+    return render(request, 'sky/vote.html', {'formset': formset})
